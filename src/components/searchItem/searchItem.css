@@ -1,0 +1,56 @@
+.searchItem {
+  border: 1px solid lightgray;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.siImg {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.siDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 2;
+}
+
+.siTitle {
+  font-size: 20px;
+  color: #0071c2;
+}
+
+.siDistance {
+  font-size: 12px;
+}
+
+.siTaxiOp {
+  font-size: 12px;
+  background-color: #008009;
+  color: white;
+  width: max-content;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.siSubtitle {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.siFeautures {
+  font-size: 12px;
+}
+
+.siDetails {
+  flex: 1;
+}
+
+.siCancelOp {
+}
