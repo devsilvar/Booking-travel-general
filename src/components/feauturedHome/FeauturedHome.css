@@ -1,19 +1,99 @@
+.carousel-container {
+  max-width: 910px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  justify-content: space-between;
+  box-shadow: #003580;
+}
+
+@media screen and (max-width: 768px) {
+  .carousel-container {
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .carousel-container {
+    position: inherit;
+    max-width: 255px;
+    width: 100%;
+    gap: 20px;
+
+    justify-content: space-between;
+  }
+}
+
+.carousel-item {
+  min-width: 290px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 426px) {
+  .carousel-item {
+    min-width: 255px;
+  }
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.flex-container > div {
+  outline: none;
+}
+
+div.slide-btn {
+  scale: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .flex-container {
+    width: 100%;
+    margin: auto;
+  }
+  .carousel-item {
+    min-width: 235px;
+  }
+}
+
+@media screen and (max-width: 426px) {
+  .flex-container {
+    width: 100%;
+    gap: 5px;
+    justify-content: center;
+  }
+  .carousel-item {
+    min-width: 100%;
+  }
+}
+
 .fp {
   max-width: 1024px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  overflow-x: scroll;
 }
 
 .fpItem {
   flex: 1;
+  min-width: 23.5%;
   gap: 10px;
   display: flex;
   flex-direction: column;
 }
 
-.fpItem img {
+.carousel-item img {
   width: 100%;
   height: 350px;
 }
@@ -30,15 +110,59 @@
   font-weight: 500;
 }
 
-.fpRating > button {
+.fpRating {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fpRating button {
   background-color: #003580;
   color: white;
   border: none;
   padding: 7px;
-  margin-right: 10px;
+  margin-right: 5px;
   font-weight: bold;
+  border-radius: 5px;
 }
 
-.fpRating > span {
-  font-size: 14px;
+.fpRating div span {
+  color: #003580;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 9px;
+}
+
+.swipeLeft {
+  animation: swipeLeft 0.5s ease-in-out;
+}
+
+.swipeRight {
+  animation: swipeRight 0.5s ease-in-out;
+}
+
+@keyframes swipeLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-266px);
+  }
+}
+
+@keyframes swipeRight {
+  0% {
+    transform: translateX(-266px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.slick-slide img {
+  width: 100%;
+}
+
+.slick-slide div {
+  padding: 10px;
+  text-align: center;
 }

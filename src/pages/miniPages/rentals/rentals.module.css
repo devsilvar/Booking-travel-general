@@ -1,0 +1,17 @@
+/* .headerSearchInput {
+  width: 300px;
+} */
+.headerSearch {
+  position: relative;
+}
+
+.rental-container {
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.rental-container h2 {
+  font-weight: 800;
+  margin-bottom: 15px;
+}

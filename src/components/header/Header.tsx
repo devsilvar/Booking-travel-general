@@ -1,219 +1,84 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
+import { NavLink, useLocation } from "react-router-dom";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import {
-  FaBed,
-  FaPlane,
-  FaCar,
-  FaTaxi,
-  FaCalendarCheck,
-  FaPersonBooth,
-} from "react-icons/fa";
-import { DateRange } from "react-date-range";
-import { format } from "date-fns";
+import { TrimLink4Refresh } from "../../utils/Data";
+import { FaBed, FaPlane, FaCar, FaTaxi } from "react-icons/fa";
 
-interface optionProp {
-  adult: number;
-  children: number;
-  room: number;
-}
+const Header = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const location = useLocation();
 
-const Header = ({ type }: { type: string }) => {
-  const [options, setoptions] = useState<optionProp | any>({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-
-  const navigate = useNavigate();
-  const [openDate, setopenDate] = useState<boolean>(false);
-  const [destination, setdestination] = useState("");
-  const [isOpenOption, setisOpenOption] = useState<boolean>(false);
-  const [date, setdate] = useState<object>([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-
-  const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+  const chosen = (index: number) => {
+    setSelectedIndex(index);
   };
 
-  const closeAll = () => {
-    setopenDate(false);
-    setisOpenOption(false);
-  };
-  const handleOption = (name: string, operation: string): void => {
-    setoptions((prev: optionProp) => {
-      return {
-        ...prev,
-        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-      };
-    });
+  const navItems = [
+    { id: 0, icon: FaBed, text: "Stays", link: "Stays" },
+    { id: 1, icon: FaPlane, text: "Flights", link: "Flights" },
+    { id: 2, icon: FaCar, text: "Car Rentals", link: "Rentals" },
+    { id: 3, icon: FaBed, text: "Attractions", link: "Attractions" },
+  ];
+
+  // function TrimLink4Refresh(pathname: string, pathLists: any[]) {
+  //   pathname = pathname.substr(1);
+  //   const getCorrectPathName = pathLists.filter((object) => {
+  //     const pathLength = object.link.length;
+  //     pathname = pathname.substr(0, pathLength);
+  //     return object.link.toLowerCase().includes(pathname.toLowerCase());
+  //   });
+  //   return Number(getCorrectPathName[0].id);
+  // }
+
+  useEffect(() => {
+    setSelectedIndex(TrimLink4Refresh(location.pathname, navItems));
+  }, [selectedIndex]);
+
+  type navProps = {
+    active: string;
+    icon: React.FC<
+      typeof FaBed | typeof FaPlane | typeof FaCar | typeof FaTaxi
+    >;
+    label: string;
   };
 
+  function NavItem(props: navProps) {
+    return (
+      <div className={`headerListItem ${props.active ? "active" : ""}`}>
+        {React.createElement(props.icon, {
+          className: "text",
+        })}
+        <span className="active">{props.label}</span>
+      </div>
+    );
+  }
   return (
     <>
-      <div className="overlay" onClick={closeAll}></div>
       <div className="header">
-        <div
-          className={
-            type === "list" ? "headerContainer listMode" : "headerContainer"
-          }
-        >
+        <div className="headerContainer">
           <div className="headerList">
-            <div className="headerListItem active">
-              <FaBed className="text" />
-              <span>Stays</span>
-            </div>
-            <div className="headerListItem">
-              <FaPlane className="text" />
-              <span>Flights</span>
-            </div>
-            <div className="headerListItem">
-              <FaCar className="text" />
-              <span>Car Rentals</span>
-            </div>
-            <div className="headerListItem">
-              <FaBed className="text" />
-              <span>Attractions</span>
-            </div>
-            <div className="headerListItem">
-              <FaTaxi className="text" />
-              <span>Taxi</span>
-            </div>
-          </div>
-
-          {type !== "list" && (
-            <>
-              <h1 className="headerTitle">
-                A Lifetime of Booking. Its a Genuis
-              </h1>
-              <p className="headerDesc">
-                Get rewarded for your Travels, Unlock instant savings of 10% or
-                more with a Free LamaBooking
-              </p>
-              <button className="headerBtn">Sign in / Register</button>
-              <div className="headerSearch">
-                <div className="headerSearchItem">
-                  <FaBed className="icon-input" />
-                  <input
-                    type="text"
-                    placeholder="Where are you going To"
-                    onChange={(e) => setdestination(e.target.value)}
-                    className="headerSearchInput"
+            {navItems.map((item, index) => {
+              const { icon, text, link } = item;
+              return (
+                <NavLink
+                  to={`${link}`}
+                  key={index}
+                  onClick={() => chosen(index)}
+                  className={`headerListItem   ${
+                    selectedIndex === index ? "activeBtn" : ""
+                  }`}
+                >
+                  <NavItem
+                    icon={icon}
+                    label={text}
+                    active={selectedIndex === index ? "activeBtn" : ""}
                   />
-                </div>
-                <div className="headerSearchItem">
-                  <FaCalendarCheck className="icon-input" />
-                  <span
-                    onClick={() => setopenDate(!openDate)}
-                    className="headerSearchText"
-                  >{`${format(date[0].startDate, "dd/MM/yyyy")}   to  ${format(
-                    date[0].endDate,
-                    "dd/MM/yyyy"
-                  )}`}</span>
-                  {openDate && (
-                    <DateRange
-                      editableDateInputs={true}
-                      onChange={(item: any) => setdate([item.selection])}
-                      moveRangeOnFirstSelection={false}
-                      ranges={date}
-                      className="dateRange"
-                      minDate={new Date()}
-                    />
-                  )}
-                </div>
-                <div className="headerSearchItem">
-                  <FaPersonBooth className="icon-input" />
-                  <span
-                    className="headerSearchText"
-                    onClick={() => setisOpenOption(!isOpenOption)}
-                  >
-                    {options.adult} Adult - {options.children} Children -{" "}
-                    {options.room} Room{" "}
-                  </span>
-                  {isOpenOption && (
-                    <div className="options">
-                      <div className="optionItems">
-                        <span className="optiontext">Adults</span>
-                        <div className="counterSection">
-                          <button
-                            className="optionCounter"
-                            onClick={() => handleOption("adult", "i")}
-                          >
-                            +
-                          </button>
-                          <span className="optionCounterNumber">
-                            {" "}
-                            {options.adult}
-                          </span>
-                          <button
-                            disabled={options.adult <= 1}
-                            className="optionCounter"
-                            onClick={() => handleOption("adult", "d")}
-                          >
-                            -
-                          </button>
-                        </div>
-                      </div>
-                      <div className="optionItems">
-                        <span className="optiontext">Children</span>
-                        <div className="counterSection">
-                          <button
-                            className="optionCounter"
-                            onClick={() => handleOption("children", "i")}
-                          >
-                            +
-                          </button>
-                          <span className="optionCounterNumber">
-                            {options.children}
-                          </span>
-                          <button
-                            disabled={options.children <= 0}
-                            className="optionCounter"
-                            onClick={() => handleOption("children", "d")}
-                          >
-                            -
-                          </button>
-                        </div>
-                      </div>
-                      <div className="optionItems">
-                        <span className="optiontext">Rooms</span>
-                        <div className="counterSection">
-                          <button
-                            className="optionCounter"
-                            onClick={() => handleOption("room", "i")}
-                          >
-                            +
-                          </button>
-                          <span className="optionCounterNumber">
-                            {options.room}
-                          </span>
-                          <button
-                            disabled={options.room <= 1}
-                            className="optionCounter"
-                            onClick={() => handleOption("room", "d")}
-                          >
-                            -
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="headerSearchItem">
-                  <button className="headerBtn Round" onClick={handleSearch}>
-                    Search
-                  </button>
-                </div>
-              </div>{" "}
-            </>
-          )}
+                </NavLink>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>

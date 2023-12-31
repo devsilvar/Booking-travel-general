@@ -1,0 +1,32 @@
+button.Round {
+  display: flex;
+  gap: 10px;
+  padding: 5px 15px;
+  align-items: center;
+}
+.headerBtn span {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .headerBtn {
+    padding: 6px;
+    display: flex;
+    align-items: center;
+  }
+  .headerBtn span:nth-child(2) {
+    display: none;
+  }
+
+  .headerBtn span:nth-child(1) img {
+    height: auto;
+    object-fit: contain;
+    object-position: bottom;
+    padding-top: 4px;
+  }
+}
+@media screen and (max-width: 465px) {
+  .headerBtn span:nth-child(2) {
+    display: block;
+  }
+}

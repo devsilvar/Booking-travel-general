@@ -3,7 +3,19 @@
   background-color: #003580;
   display: flex;
   justify-content: center;
+  margin-bottom: -3px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 0 5%;
+  }
+}
+@media (min-width: 320px) and (max-width: 769px) {
+  .navbar {
+    height: 70px;
+    padding: 5%;
+  }
 }
 
 .navContainer {
@@ -27,6 +39,3 @@
   cursor: pointer;
   color: #003580;
 }
-
-
-

@@ -1,14 +1,27 @@
 .footer {
   width: 100%;
-  width: 1024px;
+  max-width: 76%;
+  margin: auto;
   font-size: 12px;
+  margin-top: 30px;
 }
 
 .fLists {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 50px;
+}
+
+@media screen and (max-width: 426px) {
+  .footer {
+    max-width: 80%;
+    width: 100%;
+  }
+  .fLists {
+    gap: 5px;
+  }
 }
 
 .fList {
@@ -23,7 +36,12 @@
 }
 
 .fText {
+  background-color: #003580;
+  color: white;
+  width: 100%;
+  padding: 20px;
   text-align: center;
   font-weight: 500;
   font-size: 14px;
+  font-weight: 700;
 }

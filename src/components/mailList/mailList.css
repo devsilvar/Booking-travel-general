@@ -29,3 +29,19 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 425px) {
+  .mailInput {
+    width: 100%;
+  }
+
+  .mailInput > input {
+    width: 100%;
+    margin: auto;
+  }
+
+  .mailInput > button {
+    margin: 15px auto;
+    display: block;
+  }
+}
