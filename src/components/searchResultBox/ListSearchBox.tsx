@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "./listsearchBox.css";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
@@ -30,7 +31,13 @@ const ListSearchBox = ({
     <>
       <div className="listSearch">
         <h1 className="lsTitle">Search</h1>
-        <div className="lsItem">
+
+           {/* <div className="lsItem">
+              <label htmlFor="Destination">Destination</label>
+              <input type="text" placeholder={destination} />
+            </div> */}
+
+        <div className="lsItem">     
           {locationType == "Rentals" && (
             <div className="lsItem">
               <label htmlFor="Destination">Destination</label>

@@ -4,12 +4,13 @@
   align-items: center;
 }
 
-.hotelWrapper {
+.hotelWrapper , .innerWrapper {
   width: 100%;
   max-width: 1024px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  flex-wrap: wrap;
   position: relative;
   padding-top: 30px;
 }
@@ -36,6 +37,18 @@
 .sliderImg {
   width: 80%;
   height: 80vh;
+}
+
+@media screen and (max-width: 426px) {
+  .sliderImg {
+    width: 90%;
+  }
+  .innerWrapper {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    padding: 3% 3%;
+  }
 }
 
 .close {
@@ -67,6 +80,16 @@
 
 .hotelImageWrapper {
   width: 33%;
+}
+
+@media screen and (max-width: 426px) {
+  .hotelImageWrapper {
+    width: 90%;
+    margin: auto;
+  }
+  .bookNow {
+    display: none;
+  }
 }
 
 .hotelAddress {
@@ -105,7 +128,17 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap;
   margin-top: 20px;
+}
+
+@media screen and (max-width: 426px) {
+  .hotelDetails {
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+  }
 }
 
 .hotelDetailtext {

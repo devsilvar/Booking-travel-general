@@ -31,6 +31,10 @@
 }
 
 @media screen and (max-width: 425px) {
+  .mail {
+    padding: 50px 20px;
+    text-align: center;
+  }
   .mailInput {
     width: 100%;
   }

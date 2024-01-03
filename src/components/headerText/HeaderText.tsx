@@ -1,4 +1,4 @@
-import "./headerTitle.css";
+import "./headerText.css";
 
 const HeaderTitle = ({
   title,

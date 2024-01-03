@@ -1,11 +1,12 @@
 import "./List.css";
 import { useState } from "react";
-import format from "date-fns/format";
 import { Outlet, useLocation } from "react-router-dom";
-import { DateRange } from "react-date-range";
-import SearchItem from "../../components/searchItem/SearchItem";
-import ListSearchBox from "../../components/listSearchBox/ListSearchBox";
-import { setDate } from "date-fns";
+import StaySearch from "../../components/searchItemBox/StaySearch";
+import FlightSearch from "../../components/searchItemBox/FlightSearch";
+import RentalSearch from "../../components/searchItemBox/RentalSearch";
+import AttractionBox from "../../components/searchItemBox/AttractionBox";
+import StayResultBox from "../../components/searchResultsBox/StayResultBox";
+import FlightResultBox from "../../components/searchResultsBox/FlightResultBox";
 
 const List = () => {
   const location = useLocation();
@@ -16,36 +17,56 @@ const List = () => {
   const [openDate, setopenDate] = useState(false);
   const [option] = useState(location.state.options);
   const [locationType] = useState<string>(location.state.TYPE);
-  console.log(location.state.TYPE);
-  console.log(location.state.options);
-  console.log(option);
-
-  const SearchResults = [{}, {}, {}, {}, {}];
+  // console.log(location.state.TYPE);
+  // console.log(location.state.options);
+  // console.log(option);
 
   return (
     <>
       <div>
         <div className="listContainer">
           <div className="listWrapper">
-            <ListSearchBox
-              destination={destination}
-              openDate={openDate}
-              setopenDate={setopenDate}
-              date={date}
-              setdate={setDate}
-              option={option}
-              locationType={locationType}
-            />
-
-            <div className="listResult">
-              <SearchItem />
-
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-              <SearchItem />
-            </div>
+            {locationType === "Properties" && (
+              <div className="listWrapper">
+                <StaySearch
+                  destination={destination}
+                  openDate={openDate}
+                  setopenDate={setopenDate}
+                  date={date}
+                  setdate={setdate}
+                  option={option}
+                />
+                <div className="listResult">
+                  <StayResultBox />
+                  <StayResultBox />
+                  <StayResultBox />
+                  <StayResultBox />
+                  <StayResultBox />
+                  <StayResultBox />
+                </div>
+              </div>
+            )}
+            {locationType === "Flights" && (
+              <>
+                <FlightSearch
+                  destination={destination}
+                  openDate={openDate}
+                  setopenDate={setopenDate}
+                  date={date}
+                  setdate={setdate}
+                  option={option}
+                />
+                <div className="listResult">
+                  <FlightResultBox />
+                  <FlightResultBox />
+                  <FlightResultBox />
+                  <FlightResultBox />
+                  <FlightResultBox />
+                </div>
+              </>
+            )}
+            {locationType === "Rentals" && <RentalSearch />}
+            {locationType == "Attractions" && <AttractionBox />}
           </div>
         </div>
       </div>

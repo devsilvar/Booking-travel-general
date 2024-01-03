@@ -1,0 +1,25 @@
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 0px 5%;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  .headerTitle {
+    width: 100%;
+    font-size: 25px;
+
+    padding-top: 10px;
+  }
+
+  .headerContainer {
+    width: 90%;
+  }
+  .headerDesc {
+    line-height: 1.5;
+  }
+  .container {
+    margin-top: 22px;
+    padding: 0 5%;
+  }
+}

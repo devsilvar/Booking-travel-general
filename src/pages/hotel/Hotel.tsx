@@ -1,5 +1,3 @@
-import Header from "../../components/header/Header";
-import Navbar from "../../components/navbar/Navbar";
 import "./hotel.css";
 import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
@@ -7,8 +5,6 @@ import { FaArrowCircleRight, FaArrowCircleLeft } from "react-icons/fa";
 import home3 from "../../assets/images/home3.jpg";
 import home1 from "../../assets/images/home1.jpg";
 import home2 from "../../assets/images/home2.jpg";
-import MailList from "../../components/mailList/MailList";
-import Footer from "../../components/footer/Footer";
 const Hotel = () => {
   const [slideNumber, setslideNumber] = useState<number>(0);
   const [isSliderOpen, setisSliderOpen] = useState<boolean>(false);
@@ -60,22 +56,25 @@ const Hotel = () => {
           </div>
         )}
         <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
+          <div className="innerWrapper">
+            <button className="bookNow">Reserve or Book Now!</button>
 
-          <h1 className="hotelTitle">Grand Hotel</h1>
-          <div className="hotelAddress">
-            <span>Elton St 125 New York</span>
+            <h1 className="hotelTitle">Grand Hotel</h1>
+            <div className="hotelAddress">
+              <span>Elton St 125 New York</span>
+            </div>
+            <span className="hotelDistance">
+              Excellent Location - 500m from Center
+            </span>
+            <span className="hotelPriceHighlight">
+              Book a stay over $114 at this property and get a free Airport Taxi
+            </span>
           </div>
-          <span className="hotelDistance">
-            Excellent Location - 500m from Center
-          </span>
-          <span className="hotelPriceHighlight">
-            Book a stay over $114 at this property and get a free Airport Taxi
-          </span>
+
           <div className="hotelImages">
             {photos.map((item, index) => {
               return (
-                <div className="hotelImageWrapper">
+                <div className="hotelImageWrapper" key={index}>
                   <img
                     onClick={() => handleOpen(index)}
                     src={item.src}

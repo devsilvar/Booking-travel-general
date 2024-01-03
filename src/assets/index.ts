@@ -15,7 +15,25 @@ import firstClass from "./images/firstclass.jpg";
 import search from "./svgs/search (1).svg";
 import arrowLeft from "./svgs/arrow-left-circle.svg";
 import arrowRight from "./svgs/arrow-right-circle.svg";
+import open from "./svgs/up.svg";
+import close from "./svgs/down.svg";
+import cityAir from "./images/Citylink.jpg";
+import fijiAir from "./images/Fiji.jpg";
+import qatarAir from "./images/Qatar.jpg";
+import tigerAir from "./images/Tigerair.jpg";
+import unitedAir from "./images/United.jpg";
+import elvaneAir from "./images/elvane.jpg";
+import lionAir from "./images/Lion.jpg";
 export {
+  cityAir,
+  fijiAir,
+  qatarAir,
+  unitedAir,
+  tigerAir,
+  elvaneAir,
+  lionAir,
+  open,
+  close,
   arrowLeft,
   arrowRight,
   search,

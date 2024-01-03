@@ -1,85 +1,15 @@
-import { useState, useEffect, useRef, ComponentType } from "react";
+import { useState, useEffect } from "react";
 import {
-  austin,
-  ontario,
-  greece,
-  flight1,
-  flight2,
-  flight3,
-} from "../../assets";
+  feauturedHomeList,
+  FeuturedFlightList,
+  feauturedCarRenatlList,
+} from "../../utils/Data";
 import "./Feautured.css";
 
-type FeaturedItem = {
-  image: string;
-  name: string;
-  properties: number;
-  type: string;
-};
 const Feautured = ({ ComponenetType }: { ComponenetType: string }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [ChosenComponent, setChosenComponent] = useState<any[]>([]);
 
-  const feauturedHomeList = [
-    {
-      image: ontario,
-      name: "Ontario",
-      properties: 122,
-      type: ComponenetType,
-    },
-    {
-      image: austin,
-      name: "Austin",
-      properties: 134,
-      type: ComponenetType,
-    },
-    {
-      image: greece,
-      name: "Greece",
-      properties: 532,
-      type: ComponenetType,
-    },
-  ];
-
-  const feauturedCarRenatlList = [
-    {
-      image: ontario,
-      name: "Ontario",
-      properties: 122,
-      type: ComponenetType,
-    },
-    {
-      image: austin,
-      name: "Austin",
-      properties: 134,
-      type: ComponenetType,
-    },
-    {
-      image: greece,
-      name: "Greece",
-      properties: 532,
-      type: ComponenetType,
-    },
-  ];
-
-  const FeuturedFlightList = [
-    {
-      image: flight1,
-      name: "United Airways",
-      properties: 122,
-      type: ComponenetType,
-    },
-    {
-      image: flight2,
-      name: "JetStar Airways",
-      properties: 134,
-      type: ComponenetType,
-    },
-    {
-      image: flight3,
-      name: "Luftsana Airways",
-      properties: 532,
-      type: ComponenetType,
-    },
-  ];
   useEffect(() => {
     if (ComponenetType == "Flights") {
       setChosenComponent(FeuturedFlightList);
@@ -88,7 +18,7 @@ const Feautured = ({ ComponenetType }: { ComponenetType: string }) => {
     } else if (ComponenetType == "Rentals") {
       setChosenComponent(feauturedCarRenatlList);
     }
-  }, [ComponenetType]);
+  }, []);
   return (
     <>
       <div className="featured">

@@ -1,10 +1,8 @@
 import "./searchItem.css";
 import Hotel4 from "../../assets/images/home4.jpg";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-const SearchItem = () => {
-  const navigate = useNavigate();
 
+const StayResultBox = () => {
   return (
     <section className="searchItem">
       <img src={Hotel4} alt="" className="siImg" />
@@ -42,4 +40,4 @@ const SearchItem = () => {
   );
 };
 
-export default SearchItem;
+export default StayResultBox;

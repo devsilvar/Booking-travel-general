@@ -1,0 +1,63 @@
+.lsOptionText {
+  text-transform: capitalize;
+}
+
+.lsOptionInput {
+  width: 70%;
+}
+
+.lsOptionText {
+}
+
+.listSearch {
+  padding-bottom: 1%;
+  border-radius: 18px;
+}
+@media (min-width: 600px) and (max-width: 768px) {
+  .listSearch {
+    flex: 2;
+  }
+}
+
+.listSection {
+  padding: 3% 2%;
+  transition: height 4s;
+}
+.limitheight {
+  height: 0px !important;
+  padding: 0% 0%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.list-head {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+}
+
+input {
+  padding: 4px 18px;
+  border-radius: 19px;
+
+  border: 2px solid black;
+}
+
+.searchbtn {
+  border-radius: 19px;
+  margin-bottom: 10px;
+}
+
+.lsOptionItem {
+  display: flex;
+  align-items: center;
+}
+
+.listSearch .icon {
+  padding: 10px auto;
+  position: absolute;
+  right: 16px;
+}

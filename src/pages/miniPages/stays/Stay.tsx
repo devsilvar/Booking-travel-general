@@ -3,14 +3,14 @@ import FeauturedHome from "../../../components/feauturedHome/FeauturedHome";
 import PropertyList from "../../../components/propetyList/PropertyList";
 import "./stay.module.css";
 import { useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import SearchComponent from "../../../components/Search/SearchComponent";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { FaBed, FaCalendarCheck, FaPersonBooth } from "react-icons/fa";
-import HeaderTitle from "../../../components/headerTitles/HeaderTitle";
+import HeaderTitle from "../../../components/headerText/HeaderText";
 
 interface optionProp {
   adult: number | string;
@@ -25,7 +25,6 @@ const Stay = () => {
     room: 1,
   });
 
-  const location = useLocation();
   const navigate = useNavigate();
   type SelectionState = Array<{ startDate: Date; endDate: Date; key: string }>;
 
@@ -46,9 +45,7 @@ const Stay = () => {
     setrenderCLicked(!renderCLicked);
     navigate("hotels", { state: { destination, date, options, TYPE } });
   };
-  console.log(Object.keys(options)[0]);
 
-  console.log(location);
   const closeAll = () => {
     setopenDate(false);
     setisOpenOption(false);
@@ -62,7 +59,6 @@ const Stay = () => {
       };
     });
   };
-  //  const type: string = { type: "hello" } as unknown as string;
 
   return (
     <>
@@ -193,9 +189,8 @@ const Stay = () => {
         <h1 className="homeTitle">Browse by Propety Type</h1>
         <PropertyList ComponenetType={TYPE} />
         <h1 className="homeTitle">Home Guest Love</h1>
-        <FeauturedHome />
+        <FeauturedHome ComponenetType={TYPE} />
       </div>
-      <Outlet />
     </>
   );
 };

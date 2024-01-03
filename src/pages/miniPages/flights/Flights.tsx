@@ -1,16 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Feautured from "../../../components/feautured/Feautured";
 import FeauturedHome from "../../../components/feauturedHome/FeauturedHome";
 import "./flights.module.css";
 import PropertyList from "../../../components/propetyList/PropertyList";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import SearchComponent from "../../../components/Search/SearchComponent";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { FaBed, FaCalendarCheck, FaPersonBooth } from "react-icons/fa";
-import HeaderTitle from "../../../components/headerTitles/HeaderTitle";
+import HeaderTitle from "../../../components/headerText/HeaderText";
 
 interface optionProp {
   passengers: number | string;
@@ -20,10 +21,10 @@ type SelectionState = Array<{
   endDate: Date;
   key: string;
 }>;
+const TYPE: string = "Flights";
 
 const Flights = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const location = useLocation();
   const navigate = useNavigate();
 
   const [isOpenOption, setisOpenOption] = useState(false);
@@ -41,14 +42,10 @@ const Flights = () => {
     },
   ]);
 
-  console.log(Object.keys(options)[0]);
-  const TYPE: string = "Flights";
   const handleSearch = () => {
     setrenderCLicked(!renderCLicked);
     navigate("hotels", { state: { destination, date, options, TYPE } });
   };
-
-  console.log(location);
 
   const handleOption = (name: string, operation: string): void => {
     setoptions((prev: optionProp) => {
@@ -146,7 +143,7 @@ const Flights = () => {
         <h1 className="homeTitle">Browse by Flight Type</h1>
         <PropertyList ComponenetType={TYPE} />
         <h1 className="homeTitle">Choose the Flight you Love</h1>
-        <FeauturedHome />
+        <FeauturedHome ComponenetType={TYPE}  />
       </div>
     </>
   );
